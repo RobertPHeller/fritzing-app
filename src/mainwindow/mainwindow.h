@@ -962,7 +962,8 @@ protected:
 
 public:
 	static int AutosaveTimeoutMinutes;
-	static bool AutosaveEnabled;
+        static bool AutosaveEnabled;
+    static bool CheckUdatesEnabled;
 	static QString BackupFolder;
     static const int DockMinWidth;
     static const int DockMinHeight;

@@ -1238,9 +1238,14 @@ int FApplication::startup()
     m_updateDialog->setRepoPath(FolderUtils::getAppPartsSubFolderPath(""), m_referenceModel->sha());
     connect(m_updateDialog, SIGNAL(enableAgainSignal(bool)), this, SLOT(enableCheckUpdates(bool)));
     connect(m_updateDialog, SIGNAL(installNewParts()), this, SLOT(installNewParts()));
-    checkForUpdates(false);
-
-	return 0;
+    {
+        // put this in a block so that QSettings is closed
+        QSettings settings;
+        if (settings.value("checkUpdatesEnabled").toBool()) {
+            checkForUpdates(false);
+        }
+    }
+    return 0;
 }
 
 void FApplication::registerFont(const QString &fontFile, bool reallyRegister) {

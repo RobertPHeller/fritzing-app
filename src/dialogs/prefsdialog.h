@@ -65,16 +65,17 @@ public:
 
 protected:
     QWidget * createLanguageForm(QFileInfoList & languages);
-	QWidget* createOtherForm();
-	QWidget* createColorForm();
-	QWidget * createZoomerForm();
-	QWidget * createAutosaveForm();
+    QWidget* createOtherForm();
+    QWidget* createColorForm();
+    QWidget * createZoomerForm();
+    QWidget * createAutosaveForm();
+    QWidget * createUpdateAtStartForm();
     QWidget *createProgrammerForm(QList<Platform *> platforms);
-	void updateWheelText();
+    void updateWheelText();
     void initGeneral(QWidget * general, QFileInfoList & languages);
-	void initBreadboard(QWidget *, ViewInfoThing *);
-	void initSchematic(QWidget *, ViewInfoThing *);
-	void initPCB(QWidget *, ViewInfoThing *);
+    void initBreadboard(QWidget *, ViewInfoThing *);
+    void initSchematic(QWidget *, ViewInfoThing *);
+    void initPCB(QWidget *, ViewInfoThing *);
     void initCode(QWidget *widget, QList<Platform *> platforms);
     QWidget * createCurvyForm(ViewInfoThing *);
 
@@ -85,7 +86,8 @@ protected slots:
 	void setUnconnectedColor();
 	void changeWheelBehavior();
 	void toggleAutosave(bool);
-	void changeAutosavePeriod(int);
+        void changeAutosavePeriod(int);
+        void toggleCheckUpdatesEnabled(bool);
 	void curvyChanged();
     void chooseProgrammer();
 

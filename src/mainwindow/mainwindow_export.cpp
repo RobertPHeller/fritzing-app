@@ -148,7 +148,8 @@ void MainWindow::initNames()
 
 	QSettings settings;
 	AutosaveEnabled = settings.value("autosaveEnabled", QString("%1").arg(AutosaveEnabled)).toBool();
-	AutosaveTimeoutMinutes = settings.value("autosavePeriod", QString("%1").arg(AutosaveTimeoutMinutes)).toInt();
+        AutosaveTimeoutMinutes = settings.value("autosavePeriod", QString("%1").arg(AutosaveTimeoutMinutes)).toInt();
+        CheckUdatesEnabled = settings.value("checkUpdatesEnabled", QString("%1").arg(CheckUdatesEnabled)).toBool();
 }
 
 void MainWindow::print() {

@@ -289,6 +289,7 @@ static const int MainWindowDefaultHeight = 600;
 
 int MainWindow::AutosaveTimeoutMinutes = 10;   // in minutes
 bool MainWindow::AutosaveEnabled = true;
+bool MainWindow::CheckUdatesEnabled = true;
 QString MainWindow::BackupFolder;
 
 QRegExp MainWindow::GuidMatcher = QRegExp("[A-Fa-f0-9]{32}");

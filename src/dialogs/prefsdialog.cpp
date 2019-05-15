@@ -115,15 +115,15 @@ void PrefsDialog::initLayout(QFileInfoList & languages, QList<Platform *> platfo
 
 void PrefsDialog::initGeneral(QWidget * widget, QFileInfoList & languages)
 {
-	QVBoxLayout * vLayout = new QVBoxLayout();
-
-	if (languages.size() > 1) {
-		vLayout->addWidget(createLanguageForm(languages));
-	}
+    QVBoxLayout * vLayout = new QVBoxLayout();
+          
+    if (languages.size() > 1) {
+        vLayout->addWidget(createLanguageForm(languages));
+    }
 	vLayout->addWidget(createColorForm());
 	vLayout->addWidget(createZoomerForm());
 	vLayout->addWidget(createAutosaveForm());
-
+        vLayout->addWidget(createUpdateAtStartForm());
 	vLayout->addWidget(createOtherForm());
 
 	widget->setLayout(vLayout);
@@ -227,6 +227,24 @@ QWidget * PrefsDialog::createAutosaveForm() {
 
 
 	return autosave;
+}
+
+QWidget * PrefsDialog::createUpdateAtStartForm()
+{
+    QGroupBox * updateform = new QGroupBox(tr("Check for updates"), 
+                                           this ); 
+    QHBoxLayout * zhlayout = new QHBoxLayout();
+    zhlayout->setSpacing(SPACING);
+    
+    QCheckBox * box = new QCheckBox(tr("Check for updates at startup"));
+    box->setFixedWidth(FORMLABELWIDTH);
+    box->setChecked(MainWindow::CheckUdatesEnabled);
+    zhlayout->addWidget(box);
+    updateform->setLayout(zhlayout);
+    connect(box, SIGNAL(clicked(bool)), this, SLOT(toggleCheckUpdatesEnabled(bool)));
+    
+    return updateform;
+    
 }
 
 QWidget * PrefsDialog::createLanguageForm(QFileInfoList & languages)
@@ -519,6 +537,10 @@ void PrefsDialog::toggleAutosave(bool checked) {
 
 void PrefsDialog::changeAutosavePeriod(int value) {
 	m_settings.insert("autosavePeriod", QString("%1").arg(value));
+}
+
+void PrefsDialog::toggleCheckUpdatesEnabled(bool checked) {
+    m_settings.insert("checkUpdatesEnabled", QString("%1").arg(checked));
 }
 
 QWidget* PrefsDialog::createCurvyForm(ViewInfoThing * viewInfoThing) 
